@@ -1,0 +1,34 @@
+[
+  {
+    "title": "COVID-19 prevention and control",
+    "info": "Covid Comprehensive guide on infection prevention and control",
+    "name": "covid",
+    "topic": "covid",
+    "unit": [
+      {
+        "info": "COVID unit 1 info description",
+        "unitNum": 1
+      },
+      {
+        "info": "COVID unit 2 info description",
+        "unitNum": 2
+      }
+    ]
+  },
+  {
+    "title": "Cleaning",
+    "info": "Cleaning Comprehensive guide on infection prevention and control",
+    "name": "cleaning",
+    "topic": "cleaning",
+    "unit": [
+      {
+        "info": "cleaning unit 1 info description",
+        "unitNum": 1
+      },
+      {
+        "info": "cleaning unit 2 info description",
+        "unitNum": 2
+      }
+    ]
+  }
+]
