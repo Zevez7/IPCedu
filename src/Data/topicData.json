@@ -1,33 +1,20 @@
 [
   {
     "title": "COVID-19 Infection Control",
-    "info": "Covid Comprehensive guide on infection prevention and control",
-    "name": "covid",
+    "info": "Infection control guide for health care worker",
     "topic": "covid",
     "unit": [
       {
-        "info": "COVID unit 1 info description",
+        "info": "OVERVIEW",
         "unitNum": 1
       },
       {
-        "info": "COVID unit 2 info description",
+        "info": "RISK FACTORS",
         "unitNum": 2
-      }
-    ]
-  },
-  {
-    "title": "Effective Cleaning Methods",
-    "info": "Cleaning Comprehensive guide on infection prevention and control",
-    "name": "cleaning",
-    "topic": "cleaning",
-    "unit": [
-      {
-        "info": "cleaning unit 1 info description",
-        "unitNum": 1
       },
       {
-        "info": "cleaning unit 2 info description",
-        "unitNum": 2
+        "info": "TESTING",
+        "unitNum": 3
       }
     ]
   }

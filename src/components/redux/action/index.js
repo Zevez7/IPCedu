@@ -1,16 +1,4 @@
-import {
-  GET_DATA,
-  FETCH_CLEANING_DATA,
-  FETCH_COVID_DATA,
-  FETCH_FIRESTORE_TOPIC_UNIT,
-} from "./types";
-
-import cleaningData from "../../../Data/cleaningData.json";
-import covidData from "../../../Data/covidData.json";
-// import disinfectionData from "../../../Data/disinfectionData.json";
-// import sterilizationData from "../../../Data/sterilizationData.json";
-// import handData from "../../../Data/handData.json";
-// import isolationData from "../../../Data/isolationData.json";
+import { GET_DATA, FETCH_FIRESTORE_TOPIC_UNIT } from "./types";
 
 import { db } from "../../others/Firebase";
 
@@ -33,15 +21,6 @@ export const fireStoreTopicUnitFetch = (topic, unit) => async (dispatch) => {
   dispatch({ type: FETCH_FIRESTORE_TOPIC_UNIT, payload: firestoreTopicUnit });
 };
 
-export const fetchCleaningData = () => (dispatch) => {
-  const data = cleaningData;
-  dispatch({ type: FETCH_CLEANING_DATA, payload: data });
-};
-
-export const fetchCovidData = () => (dispatch) => {
-  const data = covidData;
-  dispatch({ type: FETCH_COVID_DATA, payload: data });
-};
 export const getData = (payload) => ({
   type: GET_DATA,
   payload,

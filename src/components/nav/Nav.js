@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,8 +14,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  toolbar: {
+  toolbar: {},
+  button: {
     backgroundColor: "#1976D2",
+    color: "inherit",
   },
 }));
 
@@ -24,8 +26,9 @@ const Nav = () => {
 
   return (
     <AppBar position="static">
-      <Toolbar className={classes.toolbar}>
-        {/* <IconButton
+      <Button className={classes.button} component={RouterLink} to="/">
+        <Toolbar className={classes.toolbar}>
+          {/* <IconButton
           edge="start"
           className={classes.menuButton}
           color="inherit"
@@ -33,11 +36,13 @@ const Nav = () => {
         >
           <MenuIcon />
         </IconButton> */}
-        <Typography variant="h6" align="center" className={classes.title}>
-          INFECTION EDU SYSTEM
-        </Typography>
-        {/* <Button color="inherit">Login</Button> */}
-      </Toolbar>
+          <Typography variant="h5" align="center" className={classes.title}>
+            Infection Control EDU
+          </Typography>
+
+          {/* <Button color="inherit">Login</Button> */}
+        </Toolbar>
+      </Button>
     </AppBar>
   );
 };

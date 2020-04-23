@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     marginTop: 30,
+    backgroundColor: "whitesmoke",
   },
 });
 
