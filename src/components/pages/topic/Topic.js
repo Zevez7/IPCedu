@@ -1,31 +1,23 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
-import { Container, Typography, Box } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import TopicUnit from "./TopicUnit";
 
 import { connect } from "react-redux";
-import topicDataImport from "../../../Data/topicData.json";
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    marginTop: 30,
-  },
-  fixedWidth: {
-    maxWidth: 600,
-  },
-});
-
-const Topic = ({ match, data }) => {
-  const classes = useStyles();
+const Topic = ({ match, topicListData }) => {
+  //****testing
+  console.log("topicListData", topicListData);
+  //****testing
 
   // react router paramater sent from home page to topic page
   const { topic } = match.params;
 
+  //****testing
+  console.log("topic", topic);
   // filter out topicData with the match params Topic param
   // [0] grab the first object from the array
-  const selectedTopic = topicDataImport.filter((item) => {
+  const selectedTopic = topicListData.filter((item) => {
     return item.topic === topic;
   })[0];
 
@@ -46,18 +38,16 @@ const Topic = ({ match, data }) => {
     });
 
   return (
-    <div>
-      <Container className={classes.fixedWidth}>
-        <Box align="center">
-          <Typography variant="h4">{selectedTopic.title}</Typography>
-        </Box>
-        {TopicMap}
-      </Container>
-    </div>
+    <>
+      <Box align="center">
+        <Typography variant="h4">{selectedTopic.title}</Typography>
+      </Box>
+      {TopicMap}
+    </>
   );
 };
 
-const mapStateToProps = (state) => ({ data: state.data });
+const mapStateToProps = (state) => ({ topicListData: state.topicListData });
 
 const mapDispatchToProps = {};
 

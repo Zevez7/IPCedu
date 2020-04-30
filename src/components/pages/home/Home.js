@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardUnit from "./CardUnit";
-import { Container } from "@material-ui/core";
-import topicData from "../../../Data/topicData.json";
+import { connect } from "react-redux";
+import { fireStoreTopicList } from "../../redux/action";
 
-const Home = () => {
-  const topicMap = topicData.map((item, index) => {
+const Home = ({ fireStoreTopicList, topicListData }) => {
+  useEffect(() => {
+    fireStoreTopicList();
+    console.log("use Effect");
+  }, [fireStoreTopicList]);
+
+  console.log("home render");
+
+  const topicMap = topicListData.map((item, index) => {
     return (
       <CardUnit
         title={item.title}
@@ -15,7 +22,11 @@ const Home = () => {
     );
   });
 
-  return <Container>{topicMap}</Container>;
+  return topicMap;
 };
 
-export default Home;
+const mapStateToProps = (state) => ({ topicListData: state.topicListData });
+
+const mapDispatchToProps = { fireStoreTopicList };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

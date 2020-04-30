@@ -1,0 +1,17 @@
+{
+  "title": "COVID-19 Infection Control",
+  "topic": "covid",
+  "unit": 2,
+  "date": "04/30/2020",
+  "info": "RISK FACTORS",
+  "slide": [
+    {
+      "content": "Risk factors for COVID-19 infection (3).",
+      "list": "Healthcare workers caring for COVID-19 patients, Contact with a person who has been diagnosed with COVID-19,International travelers where COVID-19 infection is high"
+    },
+    {
+      "content": "Risk factors for severe illnesses (3).",
+      "list": "People age 65 years or older, People living in Living in nursing home or long-term care facility, All ages with serious chronic medical conditions, Asthma (moderate-to-severe), Chronic lung disease, Diabetes, Serious heart condition, Chronic kidney disease with dialysis, Severe obesity, Immunocompromised, Liver disease"
+    }
+  ]
+}

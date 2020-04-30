@@ -1,0 +1,34 @@
+{
+  "title": "COVID-19 Infection Control",
+  "topic": "covid",
+  "unit": 3,
+  "date": "04/30/20",
+  "info": "TESTING",
+  "slide": [
+    {
+      "content": "CDC recommends contacting state and local health departments to find out what the testing guidelines and procedures are for their specific area. Depending on the situation in the local area, testing procedure may deviate from the recommended CDC guideline. Clinical judgement should be exercised when determining who should be tested based on signs, symptoms, risk factors, and priority. (5)"
+    },
+    {
+      "content": "Common COVID symptoms (5)",
+      "list": "Fever,Coughing, Difficulty breathing, Shortness of breath,Chills,Chills with shaking, Muscle pain, Headache, Sore throat,Loss of smell or taste"
+    },
+    {
+      "content": "High testing priorities. Priority 1 (5)",
+      "list": "Hospital patients, Symptomatic healthcare workers"
+    },
+    {
+      "content": "High testing priorities. Priority 2 (5)",
+      "list": "Patient in long-term care facilities with symptoms, Patients 65 years of age and older with symptoms, Patients with underlying conditions with symptoms, First responders with symptoms"
+    },
+    {
+      "content": "Low testing priorities Priority 3 (5)",
+      "list": "Critical infrastructure workers with symptoms, Individuals who do not meet any of the above categories with symptoms, Health care workers and first responders, Individuals with mild symptoms in communities experiencing high COVID-19 hospitalizations"
+    },
+    {
+      "content": "Suspect COVID-19 patients should undergo these specimen collection procedures. For upper respiratory tract testing, collect specimens with nasopharyngeal swab. Collect low respiratory tract specimens if possible. Sputum should be collected from patients with a productive cough. Patients with lower respiratory tract infection who are also on ventilator should get a bronchoalveolar lavage for testing. (5)"
+    },
+    {
+      "content": "Healthcare workers even with mild symptoms should be tested and closely monitored if they are in contact with high risk COVID patients. (5)"
+    }
+  ]
+}

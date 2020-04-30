@@ -1,9 +1,9 @@
-export const GET_DATA = "GET_DATA";
-
-export const FETCH_CLEANING_DATA = "FETCH_CLEANING_DATA";
-
-export const FETCH_COVID_DATA = "FETCH_COVID_DATA";
-
 export const FIRESTORE_COVID = "FIRESTORE_COVID";
 
 export const FETCH_FIRESTORE_TOPIC_UNIT = "FETCH_FIRESTORE_TOPIC_UNIT";
+
+export const USER_DATA = "USER_DATA";
+
+export const LOGOUT = "LOGOUT";
+
+export const FETCH_TOPIC_LIST = "FETCH_TOPIC_LIST";

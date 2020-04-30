@@ -9,16 +9,15 @@ import { Link as RouterLink } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     backgroundColor: "whitesmoke",
-    marginTop: 20,
   },
 });
 
-function CardUnit(props) {
+function CourseUnit(props) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea component={RouterLink} to={`/topic/${props.topic}`}>
+      <CardActionArea component={RouterLink} /* to={`/topic/${props.topic}`} */>
         <CardContent>
           <Typography variant="h5" color="primary" gutterBottom>
             {props.title}
@@ -33,4 +32,4 @@ function CardUnit(props) {
   );
 }
 
-export default CardUnit;
+export default CourseUnit;

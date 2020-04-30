@@ -1,0 +1,21 @@
+{
+  "title": "COVID-19 Infection Control",
+  "topic": "covid",
+  "unit": 1,
+  "date": "04/30/2020",
+  "info": "OVERVIEW",
+  "slide": [
+    {
+      "content": "COVID-19 is an upper respiratory viral disease caused by a novel coronavirus SARS-CoV-2. It was first discovered in November 2019 in Wuhan, Hubei Province, China. It has since spread throughout the world. The first case of travel related COVID-19 in the US was discovered on January 15, 2020 in Washington (4). On March 11th, WHO designated COVID-19 as a global pandemic (1)."
+    },
+    {
+      "content": "The virus is thought to have originated from bats, an animal reservoir for coronavirus. From its initial animal-to-human spread, it is now spreading via person-to-person contact (1).  COVID-19 is highly contagious. It spreads through droplets of saliva or running nose (2)."
+    },
+    {
+      "content": "Clinical symptoms of COVID-19 range from mild to severe. Most people will have very mild symptoms especially those who are healthy and young. A majority of case fatalities comes from people 65 years and older and people with serious chronic medical conditions (1)."
+    },
+    {
+      "content": "There are no specific FDA treatments for COVID-19. Vaccine and treatment development is currently underway(1). There is limited testing for COVID-19; however more efforts are made to increase testing capacity"
+    }
+  ]
+}

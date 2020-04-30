@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { logOut } from "../redux/action/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,21 +16,21 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  toolbar: {},
   button: {
-    backgroundColor: "#1976D2",
-    color: "inherit",
+    color: "white",
   },
 }));
 
-const Nav = () => {
+const Nav = ({ user, logOut }) => {
   const classes = useStyles();
+
+  //****testing
+  console.log("user nav bar", user);
 
   return (
     <AppBar position="static">
-      <Button className={classes.button} component={RouterLink} to="/">
-        <Toolbar className={classes.toolbar}>
-          {/* <IconButton
+      <Toolbar className={classes.toolbar}>
+        {/* <IconButton
           edge="start"
           className={classes.menuButton}
           color="inherit"
@@ -36,15 +38,32 @@ const Nav = () => {
         >
           <MenuIcon />
         </IconButton> */}
-          <Typography variant="h5" align="center" className={classes.title}>
-            Infection Control EDU
-          </Typography>
+        <Typography variant="h5" align="center" className={classes.title}>
+          Infection Control Edu
+        </Typography>
 
-          {/* <Button color="inherit">Login</Button> */}
-        </Toolbar>
-      </Button>
+        {user.displayName ? (
+          <Button
+            className={classes.button}
+            onClick={() => logOut()}
+            component={RouterLink}
+            to="/"
+            size="small"
+          >
+            Logout
+          </Button>
+        ) : (
+          <Button className={classes.button} component={RouterLink} to="/login">
+            Login
+          </Button>
+        )}
+      </Toolbar>
     </AppBar>
   );
 };
 
-export default Nav;
+const mapStateToProps = (state) => ({ user: state.userData });
+
+const mapDispatchToProps = { logOut };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

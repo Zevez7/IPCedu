@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Pagination, Skeleton } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography, Box, Divider } from "@material-ui/core";
+import { Typography, Box, Divider } from "@material-ui/core";
 import { connect } from "react-redux";
 import { fireStoreTopicUnitFetch } from "./../../redux/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > * + *": {
-      marginTop: theme.spacing(2),
-    },
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
     position: "fixed",
     bottom: 55,
-    width: "100%",
-    height: 30,
+    left: -3,
     display: "flex",
     justifyContent: "center",
+    height: 30,
     backgroundColor: "white",
     paddingTop: 20,
     paddingBottom: 30,
-    textAlign: "center",
   },
   marginBottom: {
     marginBottom: 150,
@@ -39,36 +38,28 @@ const Slide = ({ fireStoreTopicUnitFetch, match, fsData }) => {
   let contentList;
   const [page, setPage] = useState(1);
 
-  const [dataState, setDataState] = useState({
-    isLoading: true,
-  });
-
   const LoadingPlaceHolder = (
-    <>
+    <div className={classes.slideContainer}>
+      <Box pt={3} />
+      <Skeleton animation="wave" height={50} />
+      <Divider />
       <Skeleton animation="wave" />
-      <Skeleton animation="wave" />
-      <Skeleton animation="wave" />
-      <Skeleton animation="wave" />
-      <Skeleton animation="wave" />
-      <Skeleton animation="wave" />
-    </>
+      <Box pt={3} />
+      <Skeleton variant="rect" height={200} />
+    </div>
   );
 
   // useEffect to fetch from firestoreDB,
   // passing along the topic and unit to right database
 
   useEffect(() => {
-    fireStoreTopicUnitFetch(topic, unit).then(
-      setDataState({ isLoading: false })
-    );
+    fireStoreTopicUnitFetch(topic, unit);
 
     console.log("useEffect call");
   }, [topic, unit, fireStoreTopicUnitFetch]);
 
   //****testing
   console.log("fsData", fsData);
-  //****testing
-  console.log("dataState", dataState);
 
   // once fsData is populated, set the slide, content and list
   if (Object.keys(fsData).length > 0) {
@@ -108,18 +99,20 @@ const Slide = ({ fireStoreTopicUnitFetch, match, fsData }) => {
 
   return (
     <>
-      <Container>
-        <Box py={4}>
-          <Typography variant="h5"> {fsData.title}</Typography>
-          <Divider />
-          <Typography variant="body1">
-            Unit {unit} - Slide {page}
-          </Typography>
-        </Box>
-        <Box className={classes.marginBottom}>
-          {dataState.isLoading ? LoadingPlaceHolder : contentList}
-        </Box>
-      </Container>
+      {Object.keys(fsData).length > 0 ? (
+        <>
+          <Box py={4}>
+            <Typography variant="h5"> {fsData.title}</Typography>
+            <Divider />
+            <Typography variant="body1">
+              Unit {unit} - Slide {page}
+            </Typography>
+          </Box>
+          <Box className={classes.marginBottom}>{contentList}</Box>
+        </>
+      ) : (
+        LoadingPlaceHolder
+      )}
       <div className={classes.root}>
         <Pagination
           count={slideCount}

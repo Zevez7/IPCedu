@@ -8,8 +8,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    marginTop: 30,
+    marginTop: 20,
     backgroundColor: "whitesmoke",
   },
 });

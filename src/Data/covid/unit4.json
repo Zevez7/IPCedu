@@ -1,0 +1,31 @@
+{
+  "title": "COVID-19 Infection Control",
+  "topic": "covid",
+  "unit": 4,
+  "date": "04/29/20",
+  "info": "SIGNS & SYMPTOMS",
+  "slide": [
+    {
+      "content": "Incubation period for COVID-19 is 2-14 days after exposure. 5 days are the average incubation period for most people. 80% of people will have mild symptoms. 20% will have difficulty breathing and may need hospitalization."
+    },
+    {
+      "content": "Ederly people or people with chronic medical conditions are more likely to have severe symptoms. However, even younger or healthier people may experience severe symptoms (7)."
+    },
+    {
+      "content": "Chronic health condition that is considered to increase COVID severity",
+      "list": "Diabetes, High blood pressure, Chronic heart disease, Chronic lung disease"
+    },
+    {
+      "content": "Common COVID-19 symptoms(6)",
+      "list": "Fever +100.4 Fahrenheit, Dry cough, Tiredness,Aches and pains, Nasal congestion, Sore throat, Diarrhea"
+    },
+    {
+      "content": "Immediate medical attention when these signs and symptoms appear (6)",
+      "list": "Trouble breathing, Persistent pain or pressure in the chest, New confusion or inability to wake up, Bluish lips or face"
+    },
+    {
+      "content": "COVID-19 and Flu share a lot of the same features; however there are some key differences (8).",
+      "list": "Incubation: COVID-19 2-14 days vs Flu 2-4 days, Onset of symptoms: COVID-19 gradual vs Flu sudden, Children symptoms: COVID-19 less impactful vs Flu more impactful, Body chills and pain: COVID-19 less common vs Flu more common, Type of cough: COVID-19 dry cough vs Flu wet cough"
+    }
+  ]
+}
