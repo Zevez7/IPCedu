@@ -50,15 +50,12 @@ const Account = ({ user }) => {
               <ListItemText primary="Status" secondary="Member" />
             </ListItem>
             <ListItem>
-              <ListItemText
-                primary="Facility"
-                secondary="Tampa General Hospital"
-              />
+              <ListItemText primary="Facility" secondary={user.location} />
             </ListItem>
             <ListItem>
               <ListItemText
                 primary="Infection Control Education Coordinator"
-                secondary="Dr Ignaz Semmelweis"
+                secondary={user.supervisor}
               />
             </ListItem>
           </List>

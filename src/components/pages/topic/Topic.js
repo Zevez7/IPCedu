@@ -4,8 +4,9 @@ import { Typography, Box } from "@material-ui/core";
 import TopicUnit from "./TopicUnit";
 
 import { connect } from "react-redux";
+import { slideCount } from "../../redux/action/index";
 
-const Topic = ({ match, topicListData }) => {
+const Topic = ({ match, topicListData, slideCount }) => {
   //****testing
   console.log("topicListData", topicListData);
   //****testing
@@ -23,6 +24,8 @@ const Topic = ({ match, topicListData }) => {
 
   // grabbing all the different units and unit info for the selected topic
   const selectedUnit = selectedTopic.unit;
+
+  slideCount(1);
 
   const TopicMap =
     selectedUnit &&
@@ -49,6 +52,6 @@ const Topic = ({ match, topicListData }) => {
 
 const mapStateToProps = (state) => ({ topicListData: state.topicListData });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { slideCount };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Topic);

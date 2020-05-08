@@ -3,9 +3,12 @@ import {
   FETCH_TOPIC_LIST,
   LOGOUT,
   USER_DATA,
+  SLIDE_COUNT,
 } from "./types";
 
 import { db, auth } from "../../firebase/Firebase";
+
+import userDataImport from "../../../Data/user/user1.json";
 
 // unit accepted: "Unit 1, Unit 2, Unit 3"
 // topic accepted: "covid, cleaning"
@@ -40,10 +43,30 @@ export const fireStoreTopicList = () => async (dispatch) => {
   dispatch({ type: FETCH_TOPIC_LIST, payload: firestoreTopicList });
 };
 
-export const userData = (payload) => ({
-  type: USER_DATA,
-  payload,
-});
+export const fetchUserData = () => (dispatch) => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in.
+      const uid = user.uid;
+
+      // get the user's data from the userIPC collection
+      db.collection("usersIPC")
+        .doc(uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("User data:", doc.data());
+            dispatch({ type: USER_DATA, payload: doc.data() });
+          } else {
+            console.log("No such user data!");
+          }
+        });
+    } else {
+      //****testing
+      console.log("you are signed out");
+    }
+  });
+};
 
 export const logOut = () => async (dispatch) => {
   try {
@@ -58,4 +81,44 @@ export const logOut = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+};
+
+export const slideCount = (payload) => ({
+  type: SLIDE_COUNT,
+  payload,
+});
+
+export const updateCurrentSlide = (topicImport, unitNum, page) => (
+  dispatch,
+  getState
+) => {
+  const userData = getState().userData;
+  const userId = userData.userId;
+  // update whole unit with new slide
+
+  // shallow copy savedTopic into a new variable
+  let savedTopic = { ...userData.savedTopic };
+
+  // changed the currentSlide to its new value
+  savedTopic[topicImport].unit[unitNum].currentSlide = page;
+
+  // if user ID populated from getState() userData then
+  // update the document
+
+  if (userId) {
+    db.collection("usersIPC")
+      .doc(userId)
+      .update({
+        savedTopic,
+      })
+      .then(function () {
+        console.log("Document successfully updated!");
+      })
+      .catch((err) => {
+        console.log("Document did not update correctly", err);
+      });
+  }
+
+  // dispatch();
+  // dispatch({ type: FETCH_TOPIC_LIST, payload: firestoreTopicList });
 };

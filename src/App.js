@@ -10,10 +10,11 @@ import NavBottom from "./components/nav/NavBottom";
 import Topic from "./components/pages/topic/Topic";
 import Slide from "./components/pages/slide/Slide";
 import { connect } from "react-redux";
-import { auth } from "./components/firebase/Firebase";
-import { userData } from "./components/redux/action/index";
+import {
+  fetchUserData,
+  updateCurrentSlide,
+} from "./components/redux/action/index";
 import { makeStyles } from "@material-ui/core/styles";
-
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -30,33 +31,23 @@ theme = responsiveFontSizes(theme);
 const useStyles = makeStyles({
   root: {
     maxWidth: 500,
-    marginTop: 30,
+    marginTop: 10,
     marginLeft: "auto",
     marginRight: "auto",
+    marginBottom: 80,
   },
 });
 
-function App({ userData, user }) {
+function App({ fetchUserData, user, updateCurrentSlide }) {
   const classes = useStyles();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in.
-        const displayName = user.displayName;
-        const email = user.email;
-        const uid = user.uid;
+    fetchUserData();
+  }, [fetchUserData, updateCurrentSlide]);
 
-        userData({ displayName, email, uid });
-
-        //****testing
-        console.log("user useffect onAuthStateChange", displayName, email, uid);
-      } else {
-        //****testing
-        console.log("you are signed out");
-      }
-    });
-  }, [userData]);
+  // if (user) {
+  //   updateCurrentSlide("covid", 1, 1000);
+  // }
 
   return (
     <Router>
@@ -105,7 +96,8 @@ function App({ userData, user }) {
 const mapStateToProps = (state) => ({ user: state.userData });
 
 const mapDispatchToProps = {
-  userData,
+  fetchUserData,
+  updateCurrentSlide,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

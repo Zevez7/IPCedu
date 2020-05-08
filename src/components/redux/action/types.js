@@ -7,3 +7,7 @@ export const USER_DATA = "USER_DATA";
 export const LOGOUT = "LOGOUT";
 
 export const FETCH_TOPIC_LIST = "FETCH_TOPIC_LIST";
+
+export const SLIDE_COUNT = "SLIDE_COUNT";
+
+export const UPDATE_CURRENT_SLIDE = "UPDATE_CURRENT_SLIDE";

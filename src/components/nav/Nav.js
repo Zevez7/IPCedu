@@ -24,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
 const Nav = ({ user, logOut }) => {
   const classes = useStyles();
 
-  //****testing
-  console.log("user nav bar", user);
-
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>

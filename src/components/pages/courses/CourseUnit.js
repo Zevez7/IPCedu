@@ -1,35 +1,63 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { slideCount } from "./../../redux/action/index";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: "whitesmoke",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  progressBar: {
+    marginTop: 10,
   },
 });
 
-function CourseUnit(props) {
-  const classes = useStyles();
+const BorderLinearProgress = withStyles({
+  root: {
+    height: 10,
+  },
+  bar: {
+    borderRadius: 20,
+  },
+})(LinearProgress);
 
+function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
+  const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardActionArea component={RouterLink} /* to={`/topic/${props.topic}`} */>
+      <CardActionArea
+        component={RouterLink}
+        to={`/slide/${topic}/${unit}`}
+        onClick={() => slideCount(currentSlide)}
+      >
         <CardContent>
-          <Typography variant="h5" color="primary" gutterBottom>
-            {props.title}
+          <Typography variant="body1" color="primary">
+            Unit {unit && unit}
           </Typography>
 
-          <Typography variant="body1" component="p">
-            {props.info}
-          </Typography>
+          <Typography variant="body1">{info && info}</Typography>
+          <BorderLinearProgress
+            className={classes.progressBar}
+            variant="determinate"
+            color="primary"
+            value={progress}
+          />
         </CardContent>
       </CardActionArea>
     </Card>
   );
 }
 
-export default CourseUnit;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = { slideCount };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseUnit);
