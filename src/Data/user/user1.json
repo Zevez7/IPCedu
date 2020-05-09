@@ -4,55 +4,28 @@
   "userId": "0cEFZ0ZMrlcE1HTG6ky3E9LY7qm2",
   "location": "TGH",
   "supervisor": "Healthy Jane",
-  "savedTopic": {
-    "covid": {
-      "title": "COVID-19 Infection Control",
-      "info": "Infection control guide for health care worker",
-      "topic": "covid",
-      "unit": {
-        "1": {
-          "info": "OVERVIEW",
-          "unitNum": 1,
-          "currentSlide": 2,
-          "totalSlide": 4
-        },
-        "2": {
-          "info": "RISK FACTORS",
-          "unitNum": 2,
-          "currentSlide": 2,
-          "totalSlide": 2
-        },
-        "3": {
-          "info": "TESTING",
-          "unitNum": 3,
-          "currentSlide": 6,
-          "totalSlide": 7
-        }
-      }
-    },
-    "healthy": {
-      "title": "Healthy Life Style",
-      "info": "Living the good life",
-      "topic": "healthy",
-      "unit": {
-        "1": {
-          "info": "OVERVIEW",
-          "unitNum": 1,
-          "currentSlide": 2,
-          "totalSlide": 5
-        },
-        "2": {
-          "info": "RISK FACTORS",
-          "unitNum": 2,
-          "currentSlide": 2,
-          "totalSlide": 2
-        },
-        "3": {
-          "info": "TESTING",
-          "unitNum": 3,
-          "currentSlide": 6,
-          "totalSlide": 7
-        }
+  "covid": {
+    "title": "COVID-19 Infection Control",
+    "info": "Infection control guide for health care worker",
+    "topic": "covid",
+    "unit": {
+      "1": {
+        "info": "OVERVIEW",
+        "unitNum": 1,
+        "currentSlide": 2,
+        "totalSlide": 4
+      },
+      "2": {
+        "info": "RISK FACTORS",
+        "unitNum": 2,
+        "currentSlide": 2,
+        "totalSlide": 2
+      },
+      "3": {
+        "info": "TESTING",
+        "unitNum": 3,
+        "currentSlide": 6,
+        "totalSlide": 7
       }
     }
   }

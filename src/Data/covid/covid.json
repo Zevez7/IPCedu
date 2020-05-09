@@ -1,0 +1,19 @@
+{
+  "title": "COVID-19 Infection Control",
+  "info": "Infection control guide for health care worker",
+  "topic": "covid",
+  "unit": {
+    "1": {
+      "info": "OVERVIEW",
+      "unitNum": 1
+    },
+    "2": {
+      "info": "RISK FACTORS",
+      "unitNum": 2
+    },
+    "3": {
+      "info": "TESTING",
+      "unitNum": 3
+    }
+  }
+}

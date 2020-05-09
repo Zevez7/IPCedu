@@ -1,32 +1,24 @@
-import React, { useEffect } from "react";
-import CardUnit from "./CardUnit";
-import { connect } from "react-redux";
-import { fireStoreTopicList } from "../../redux/action";
+import React from "react";
+import { Box, Typography } from "@material-ui/core";
 
-const Home = ({ fireStoreTopicList, topicListData }) => {
-  useEffect(() => {
-    fireStoreTopicList();
-    console.log("use Effect");
-  }, [fireStoreTopicList]);
+const Home = () => {
 
-  console.log("home render");
-
-  const topicMap = topicListData.map((item, index) => {
-    return (
-      <CardUnit
-        title={item.title}
-        info={item.info}
-        key={index}
-        topic={item.topic}
-      />
-    );
-  });
-
-  return topicMap;
+  return (
+    <>
+      <Box>
+        <Typography variant="h4">
+          COVID-19 Infection Control Guide for Healthcare Workers & Essential
+          Workers
+        </Typography>
+      </Box>
+      <Box mt={4}>
+        <Typography variant="body1">
+          A comprehensive infection control guide created by healthcare
+          professionals in support of healthcare works and essential works
+        </Typography>
+      </Box>
+    </>
+  );
 };
 
-const mapStateToProps = (state) => ({ topicListData: state.topicListData });
-
-const mapDispatchToProps = { fireStoreTopicList };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

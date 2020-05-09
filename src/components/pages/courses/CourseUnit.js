@@ -6,13 +6,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { slideCount } from "./../../redux/action/index";
+import { slideCount } from "../../redux/action/index";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: "whitesmoke",
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 10,
   },
   progressBar: {
@@ -30,6 +30,8 @@ const BorderLinearProgress = withStyles({
 })(LinearProgress);
 
 function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
+
+
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -44,12 +46,15 @@ function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
           </Typography>
 
           <Typography variant="body1">{info && info}</Typography>
-          <BorderLinearProgress
-            className={classes.progressBar}
-            variant="determinate"
-            color="primary"
-            value={progress}
-          />
+
+          {!Number.isNaN(progress) ? (
+            <BorderLinearProgress
+              className={classes.progressBar}
+              variant="determinate"
+              color="primary"
+              value={progress}
+            />
+          ) : null}
         </CardContent>
       </CardActionArea>
     </Card>

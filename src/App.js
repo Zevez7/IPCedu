@@ -2,18 +2,13 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./components/others/ScrollToTop";
-import Home from "./components/pages/home/Home.js";
 import Nav from "./components/nav/Nav";
 import Login from "./components/pages/login/Login";
-import Courses from "./components/pages/courses/Courses";
+import Courses from "./components/pages/courses/Course";
 import NavBottom from "./components/nav/NavBottom";
-import Topic from "./components/pages/topic/Topic";
 import Slide from "./components/pages/slide/Slide";
 import { connect } from "react-redux";
-import {
-  fetchUserData,
-  updateCurrentSlide,
-} from "./components/redux/action/index";
+import { fetchUserData } from "./components/redux/action/index";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   createMuiTheme,
@@ -22,6 +17,8 @@ import {
 } from "@material-ui/core/styles";
 import Account from "./components/pages/account/Account";
 import { Container } from "@material-ui/core";
+import Home from "./components/pages/home/Home";
+import About from './components/pages/about/About';
 
 // automatic responsive font sizes based on variant
 // https://material-ui.com/customization/typography/
@@ -45,10 +42,6 @@ function App({ fetchUserData, user, updateCurrentSlide }) {
     fetchUserData();
   }, [fetchUserData, updateCurrentSlide]);
 
-  // if (user) {
-  //   updateCurrentSlide("covid", 1, 1000);
-  // }
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -58,11 +51,6 @@ function App({ fetchUserData, user, updateCurrentSlide }) {
           <Container className={classes.root}>
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} />} />
-              <Route
-                exact
-                path="/topic/:topic"
-                render={(props) => <Topic {...props} />}
-              />
               <Route
                 exact
                 path="/login"
@@ -77,13 +65,18 @@ function App({ fetchUserData, user, updateCurrentSlide }) {
                 exact
                 path="/account"
                 render={(props) => <Account {...props} />}
-              />{" "}
+              />
               <Route
                 exact
                 path="/courses"
                 render={(props) => <Courses {...props} />}
               />
-            </Switch>{" "}
+              <Route
+                exact
+                path="/about"
+                render={(props) => <About {...props} />}
+              />
+            </Switch>
           </Container>
         </ScrollToTop>
 
@@ -97,7 +90,6 @@ const mapStateToProps = (state) => ({ user: state.userData });
 
 const mapDispatchToProps = {
   fetchUserData,
-  updateCurrentSlide,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

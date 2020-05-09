@@ -8,7 +8,7 @@ import {
 
 import { db, auth } from "../../firebase/Firebase";
 
-import userDataImport from "../../../Data/user/user1.json";
+// import userDataImport from "../../../Data/user/user1.json";
 
 // unit accepted: "Unit 1, Unit 2, Unit 3"
 // topic accepted: "covid, cleaning"
@@ -62,7 +62,6 @@ export const fetchUserData = () => (dispatch) => {
           }
         });
     } else {
-      //****testing
       console.log("you are signed out");
     }
   });
@@ -71,10 +70,9 @@ export const fetchUserData = () => (dispatch) => {
 export const logOut = () => async (dispatch) => {
   try {
     await auth.signOut();
-    //****testing
+
     console.log("logout successful");
   } catch (error) {
-    //****testing
     console.log("error", error);
   }
 
@@ -94,22 +92,22 @@ export const updateCurrentSlide = (topicImport, unitNum, page) => (
 ) => {
   const userData = getState().userData;
   const userId = userData.userId;
-  // update whole unit with new slide
 
+  // update whole unit with new slide
   // shallow copy savedTopic into a new variable
-  let savedTopic = { ...userData.savedTopic };
+  let topic = { ...userData[topicImport] };
 
   // changed the currentSlide to its new value
-  savedTopic[topicImport].unit[unitNum].currentSlide = page;
+  topic.unit[unitNum].currentSlide = page;
+  console.log("savedTopic", topic);
 
   // if user ID populated from getState() userData then
   // update the document
-
   if (userId) {
     db.collection("usersIPC")
       .doc(userId)
       .update({
-        savedTopic,
+        topic,
       })
       .then(function () {
         console.log("Document successfully updated!");

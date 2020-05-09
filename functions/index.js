@@ -23,11 +23,44 @@ exports.userJoined = functions.auth.user().onCreate((user) => {
   const displayName = user.displayName; // The disp
   const userId = user.uid;
 
+  const dataObjectUerTemplate = {
+    displayName,
+    email,
+    userId,
+    location: "Tampa Bay",
+    supervisor: "N/A",
+    covid: {
+      title: "COVID-19 Infection Control",
+      info: "Infection control guide for health care worker",
+      topic: "covid",
+      unit: {
+        "1": {
+          info: "OVERVIEW",
+          unitNum: 1,
+          currentSlide: 0,
+          totalSlide: 4,
+        },
+        "2": {
+          info: "RISK FACTORS",
+          unitNum: 2,
+          currentSlide: 0,
+          totalSlide: 2,
+        },
+        "3": {
+          info: "TESTING",
+          unitNum: 3,
+          currentSlide: 0,
+          totalSlide: 7,
+        },
+      },
+    },
+  };
+
   return admin
     .firestore()
     .collection("usersIPC")
     .doc(`${userId}`)
-    .set({ email, displayName, userId })
+    .set(dataObjectUerTemplate)
     .then((doc) => console.log("add new user to usersIPC", doc));
 
   // return admin
