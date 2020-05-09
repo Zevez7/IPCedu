@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
+import Divider from "./../../others/Divider";
 import {
   Box,
   Typography,
-  Container,
   List,
   ListItem,
   ListItemText,
@@ -13,7 +13,6 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
     marginLeft: "auto",
     marginRight: "auto",
     textAlign: "center",
@@ -23,11 +22,7 @@ const useStyles = makeStyles({
     marginBottom: 20,
   },
   topAccount: {},
-  divider: {
-    border: "1px solid #3F51B5",
-    marginTop: 30,
-    marginBottom: 30,
-  },
+
   bottomAccount: {},
 });
 
@@ -36,18 +31,17 @@ const Account = ({ user }) => {
 
   return (
     <>
-      <Container className={classes.root}>
+      <Box className={classes.root}>
         <Box className={classes.topAccount}>
           <PublicIcon color="primary" className={classes.icon} />
           <Typography variant="h5">{user.displayName}</Typography>
           <Typography variant="body2">{user.email}</Typography>
         </Box>
-
-        <div className={classes.divider} />
+        <Divider />
         <Box className={classes.bottomAccount}>
           <List dense>
             <ListItem>
-              <ListItemText primary="Status" secondary="Member" />
+              <ListItemText primary="Status" secondary="Active" />
             </ListItem>
             <ListItem>
               <ListItemText primary="Facility" secondary={user.location} />
@@ -60,7 +54,7 @@ const Account = ({ user }) => {
             </ListItem>
           </List>
         </Box>
-      </Container>
+      </Box>
     </>
   );
 };

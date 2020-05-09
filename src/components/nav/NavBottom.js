@@ -40,12 +40,6 @@ function SimpleBottomNavigation({ user }) {
         label="Home"
         icon={<HomeIcon />}
       />
-      <BottomNavigationAction
-        component={Link}
-        to="/about"
-        label="About"
-        icon={<InfoIcon />}
-      />
 
       <BottomNavigationAction
         component={Link}
@@ -53,6 +47,15 @@ function SimpleBottomNavigation({ user }) {
         label="Courses"
         icon={<ListBulletedIcon />}
       />
+
+      {!user.displayName ? (
+        <BottomNavigationAction
+          component={Link}
+          to="/about"
+          label="About"
+          icon={<InfoIcon />}
+        />
+      ) : null}
 
       {user.displayName ? (
         <BottomNavigationAction

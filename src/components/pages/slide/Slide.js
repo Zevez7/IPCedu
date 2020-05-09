@@ -78,7 +78,6 @@ const Slide = ({
     });
   }, [topic, unit, fireStoreTopicUnitFetch]);
 
-
   // once fsData is populated, set the slide, content and list
   if (!isLoading) {
     console.log("dataloaded");
@@ -143,7 +142,7 @@ const Slide = ({
                 </Button>
               </Box>
             )}
-            <Typography variant="h5">{fsData.title}</Typography>
+            <Typography variant="h5">{fsData.info}</Typography>
             <Divider />
             <Typography variant="body1">
               Unit {unit} - Slide {page}

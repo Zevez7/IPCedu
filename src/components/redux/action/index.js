@@ -8,10 +8,6 @@ import {
 
 import { db, auth } from "../../firebase/Firebase";
 
-// import userDataImport from "../../../Data/user/user1.json";
-
-// unit accepted: "Unit 1, Unit 2, Unit 3"
-// topic accepted: "covid, cleaning"
 export const fireStoreTopicUnitFetch = (topic, unit) => async (dispatch) => {
   let firestoreTopicUnit;
 
@@ -107,7 +103,7 @@ export const updateCurrentSlide = (topicImport, unitNum, page) => (
     db.collection("usersIPC")
       .doc(userId)
       .update({
-        topic,
+        [topicImport]: topic,
       })
       .then(function () {
         console.log("Document successfully updated!");

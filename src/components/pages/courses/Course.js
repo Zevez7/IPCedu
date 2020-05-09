@@ -5,13 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import covidData from "../../../Data/covid/covid.json";
+import Divider from "./../../others/Divider";
 
 const useStyles = makeStyles({
-  divider: {
-    border: "1px solid #3F51B5",
-    marginTop: 20,
-    marginBottom: 30,
-  },
   courses: {
     marginTop: 20,
   },
@@ -24,6 +20,8 @@ export const Courses = ({ userData }) => {
 
   const courseMap = course && (
     <Box className={classes.courses}>
+      <Typography variant="h5">{course.title}</Typography>
+
       {course.unit &&
         Object.values(course.unit).map((courseUnit, index) => {
           return (
@@ -45,8 +43,7 @@ export const Courses = ({ userData }) => {
       <Box align="center">
         <Typography variant="h4">COURSES</Typography>
       </Box>
-      <div className={classes.divider} />
-
+      <Divider />
       {courseMap}
     </>
   );
