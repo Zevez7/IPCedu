@@ -1,11 +1,12 @@
-import { FETCH_TOPIC_LIST } from "./../action/types";
+import { FETCH_COVID_LIST } from "./../action/types";
 
-const initialState = [];
+const initialState = {};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_TOPIC_LIST:
+    case FETCH_COVID_LIST:
       return payload;
+
     default:
       return state;
   }

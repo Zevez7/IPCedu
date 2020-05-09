@@ -6,7 +6,7 @@ export const USER_DATA = "USER_DATA";
 
 export const LOGOUT = "LOGOUT";
 
-export const FETCH_TOPIC_LIST = "FETCH_TOPIC_LIST";
+export const FETCH_COVID_LIST = "FETCH_COVID_LIST";
 
 export const SLIDE_COUNT = "SLIDE_COUNT";
 

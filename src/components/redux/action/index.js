@@ -1,6 +1,6 @@
 import {
   FETCH_FIRESTORE_TOPIC_UNIT,
-  FETCH_TOPIC_LIST,
+  FETCH_COVID_LIST,
   LOGOUT,
   USER_DATA,
   SLIDE_COUNT,
@@ -25,18 +25,17 @@ export const fireStoreTopicUnitFetch = (topic, unit) => async (dispatch) => {
   dispatch({ type: FETCH_FIRESTORE_TOPIC_UNIT, payload: firestoreTopicUnit });
 };
 
-export const fireStoreTopicList = () => async (dispatch) => {
-  let firestoreTopicList = [];
+export const fetchCovidList = () => async (dispatch) => {
   try {
-    const TopicList = await db.collection("topicList").get();
-    TopicList.forEach((doc) => {
-      firestoreTopicList = [...firestoreTopicList, doc.data()];
-    });
-  } catch (error) {
-    console.log("firestoreTopicList does not exist", error);
-  }
+    const covidList = await db.collection("covid").doc("covidList").get();
 
-  dispatch({ type: FETCH_TOPIC_LIST, payload: firestoreTopicList });
+    if (covidList.data()) {
+      console.log("covidList", covidList.data());
+      dispatch({ type: FETCH_COVID_LIST, payload: covidList.data() });
+    }
+  } catch (error) {
+    console.log("CovidList does not exist", error);
+  }
 };
 
 export const fetchUserData = () => (dispatch) => {

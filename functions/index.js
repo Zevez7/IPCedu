@@ -52,6 +52,12 @@ exports.userJoined = functions.auth.user().onCreate((user) => {
           currentSlide: 0,
           totalSlide: 7,
         },
+        "4": {
+          info: "SIGNS & SYMPTOMS",
+          unitNum: 4,
+          currentSlide: 0,
+          totalSlide: 6,
+        },
       },
     },
   };

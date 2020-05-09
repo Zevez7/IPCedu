@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CourseUnit from "./CourseUnit";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Box, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
-import covidData from "../../../Data/covid/covid.json";
 import Divider from "./../../others/Divider";
-
+import { fetchCovidList } from "../../redux/action/index";
 const useStyles = makeStyles({
   courses: {
     marginTop: 20,
   },
 });
 
-export const Courses = ({ userData }) => {
+export const Courses = ({ userData, fetchCovidList, covidListData }) => {
   const classes = useStyles();
 
-  let course = userData.userId ? userData.covid : covidData;
+  useEffect(() => {
+    fetchCovidList();
+  }, [fetchCovidList]);
 
+  let course = userData.userId ? userData.covid : covidListData;
   const courseMap = course && (
     <Box className={classes.courses}>
       <Typography variant="h5">{course.title}</Typography>
@@ -52,8 +54,9 @@ export const Courses = ({ userData }) => {
 const mapStateToProps = (state) => ({
   userCourse: state.userData.savedTopic,
   userData: state.userData,
+  covidListData: state.covidListData,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { fetchCovidList };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Courses);
