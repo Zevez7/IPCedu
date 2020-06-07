@@ -1,34 +1,24 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const userPrivacyPaths = require("./user_privacy.json");
+
 admin.initializeApp(functions.config().firebase);
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
-
-const createNotification = (notification) => {
-  return admin
-    .firestore()
-    .collection("notifications")
-    .add(notification)
-    .then((doc) => console.log("notification added", doc));
-};
-
 exports.userJoined = functions.auth.user().onCreate((user) => {
-  const email = user.email; // The email of the user.
-  const displayName = user.displayName; // The disp
+  const email = user.email;
+  const displayName = user.displayName;
   const userId = user.uid;
+  const createdAt = Date.now();
 
-  const dataObjectUerTemplate = {
+  const dataObjectUserTemplate = {
     displayName,
     email,
     userId,
-    location: "Tampa Bay",
-    supervisor: "N/A",
+    createdAt,
+    location: "N/A",
+    coordinator: "N/A",
+    role: "user",
+    position: "N/A",
     covid: {
       title: "COVID-19 Infection Control",
       info: "Infection control guide for health care worker",
@@ -66,35 +56,64 @@ exports.userJoined = functions.auth.user().onCreate((user) => {
     .firestore()
     .collection("usersIPC")
     .doc(`${userId}`)
-    .set(dataObjectUerTemplate)
+    .set(dataObjectUserTemplate)
     .then((doc) => console.log("add new user to usersIPC", doc));
-
-  // return admin
-  //   .firestore()
-  //   .collection("usersIPC")
-  //   .doc(user.uid)
-  //   .get()
-  //   .then((doc) => {
-  //     const newUser = doc.data();
-  //     const notification = {
-  //       content: "Joined the party",
-  //       user: `${newUser.email} ${newUser.displayName}`,
-  //       time: admin.firestore.FieldValue.serverTimestamp(),
-  //     };
-
-  //     return createNotification(notification);
-  //   });
 });
 
-// exports.projectCreated = functions.firestore()
-//   .document("usersIPC/{userId}")
-//   .onCreate((doc) => {
-//     const user = doc.data();
-//     const notification = {
-//       content: "Added a new unit",
-//       user: `${project.firstName}${project.lastName}`,
-//       time: admin.firestore.FieldValue.serverTimestamp(),
-//     };
+// The clearData function removes personal data from the RealTime Database,
+// Storage, and Firestore. It waits for all deletions to complete, and then
+// returns a success message.
+//
+// Triggered by a user deleting their account.
+exports.clearData = functions.auth.user().onDelete((user) => {
+  const uid = user.uid;
 
-//     return createNotification(notification);
-//   });
+  const firestorePromise = clearFirestoreData(uid);
+
+  return Promise.all([firestorePromise]).then(() =>
+    console.log(`Successfully removed data for user #${uid}.`)
+  );
+});
+
+// Clear all specified paths from the Firestore Database. To add or remove a
+// path, edit the `firestore[clearData]` array in `user_privacy.json`.
+//
+// This function is called by the top-level `clearData` function.
+//
+// Returns a list of Promises
+const clearFirestoreData = (uid) => {
+  const paths = userPrivacyPaths.firestore.clearData;
+  const promises = [];
+
+  for (let i = 0; i < paths.length; i++) {
+    const entry = paths[i];
+    const entryCollection = replaceUID(entry.collection, uid);
+    const entryDoc = replaceUID(entry.doc, uid);
+    const docToDelete = admin
+      .firestore()
+      .collection(entryCollection)
+      .doc(entryDoc);
+    if ("field" in entry) {
+      const entryField = replaceUID(entry.field, uid);
+      const update = {};
+      update[entryField] = FieldValue.delete();
+      promises.push(
+        docToDelete.update(update).catch((err) => {
+          console.error("Error deleting field: ", err);
+        })
+      );
+    } else if (docToDelete) {
+      promises.push(
+        docToDelete.delete().catch((err) => {
+          console.error("Error deleting document: ", err);
+        })
+      );
+    }
+  }
+
+  return Promise.all(promises).then(() => uid);
+};
+
+const replaceUID = (str, uid) => {
+  return str.replace(/UID_VARIABLE/g, uid);
+};

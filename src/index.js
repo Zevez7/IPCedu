@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 import reducers from "./components/redux/reducers";
 // add store to allow  devTool and middleware
-const store = createStore(
+export const store = createStore(
   reducers,
   composeWithDevTools(
     applyMiddleware(reduxThunk)

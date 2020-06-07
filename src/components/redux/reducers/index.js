@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
-import dataReducer from "./dataReducer";
-import firestoreReducer from "./firestoreReducer";
 import userReducer from "./userReducer";
 import slideReducer from "./slideReducer";
-import covidListReducer from "./covidListReducer";
+import coordinatorReducer from "./coordinatorReducer";
+import adminReducer from "./adminReducer";
+import publicReducer from "./publicReducer";
 
 const rootReducer = combineReducers({
-  data: dataReducer,
-  fireData: firestoreReducer,
   userData: userReducer,
   slideData: slideReducer,
-  covidListData: covidListReducer,
+  adminData: adminReducer,
+  coordinatorUserData: coordinatorReducer,
+  publicData: publicReducer,
 });
 
 export default rootReducer;

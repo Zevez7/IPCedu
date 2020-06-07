@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { slideCount } from "../../redux/action/index";
+import { slideCount } from "../../redux/action/slideAction";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({
@@ -30,8 +30,6 @@ const BorderLinearProgress = withStyles({
 })(LinearProgress);
 
 function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
-
-
   const classes = useStyles();
   return (
     <Card className={classes.root}>

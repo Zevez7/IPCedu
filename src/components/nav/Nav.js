@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logOut } from "../redux/action/index";
+import { logOut } from "../redux/action/userAction";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 const Nav = ({ user, logOut }) => {
   const classes = useStyles();
 
+  //****testing
+  console.log("user.role", user.role);
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
@@ -39,7 +41,7 @@ const Nav = ({ user, logOut }) => {
           Infection Control Edu
         </Typography>
 
-        {user.displayName ? (
+        {user.email ? (
           <Button
             className={classes.button}
             onClick={() => logOut()}

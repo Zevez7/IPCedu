@@ -48,7 +48,7 @@ function SimpleBottomNavigation({ user }) {
         icon={<ListBulletedIcon />}
       />
 
-      {!user.displayName ? (
+      {!user.email ? (
         <BottomNavigationAction
           component={Link}
           to="/about"
@@ -57,7 +57,7 @@ function SimpleBottomNavigation({ user }) {
         />
       ) : null}
 
-      {user.displayName ? (
+      {user.email ? (
         <BottomNavigationAction
           component={Link}
           to="/account"

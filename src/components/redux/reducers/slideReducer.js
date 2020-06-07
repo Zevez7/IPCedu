@@ -1,4 +1,4 @@
-import { SLIDE_COUNT } from "../action/types";
+import { SLIDE_COUNT } from "../action/slideAction";
 
 const initialState = {};
 

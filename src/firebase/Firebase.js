@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-
+import history from "../components/others/history";
 import "firebase/firestore";
 import "firebase/auth";
 
@@ -18,7 +18,23 @@ firebase.initializeApp(firebaseApp);
 
 const firebaseUiConfig = {
   signInFlow: "popup",
-  signInSuccessUrl: "/",
+  // signInSuccessUrl: "/",
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+      let isNewUser = authResult.additionalUserInfo.isNewUser;
+      // hod to send a hard refresh since a new user needed time
+      // for cloud function to add user to userIPC database.
+      // the hard refresh would allow authstate to be called again
+      // auth state would fetch user data
+      if (isNewUser) {
+        console.log("refresh whole app");
+        history.push("/");
+        return window.location.reload(true);
+      }
+      return false;
+    },
+  },
   signInOptions: [
     // List of OAuth providers supported.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -28,4 +44,4 @@ const firebaseUiConfig = {
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-export { db, auth, firebaseUiConfig };
+export { db, auth, firebaseUiConfig, firebase };

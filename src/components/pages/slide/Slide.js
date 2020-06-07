@@ -3,8 +3,11 @@ import { Pagination, Skeleton } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Box, Divider, Button } from "@material-ui/core";
 import { connect } from "react-redux";
-import { fireStoreTopicUnitFetch } from "./../../redux/action";
-import { slideCount, updateCurrentSlide } from "./../../redux/action/index";
+import { fetchTopicUnit } from "./../../redux/action/publicAction";
+import {
+  slideCount,
+  updateCurrentSlide,
+} from "./../../redux/action/slideAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Slide = ({
-  fireStoreTopicUnitFetch,
+  fetchTopicUnit,
   match,
-  fsData,
+  topicUnit,
   slidePage,
   slideCount,
   updateCurrentSlide,
@@ -71,19 +74,19 @@ const Slide = ({
   // passing along the topic and unit to right database
 
   useEffect(() => {
-    fireStoreTopicUnitFetch(topic, unit).then(() => {
+    fetchTopicUnit(topic, unit).then(() => {
       //****testing
       console.log("cat");
       setisLoading(false);
     });
-  }, [topic, unit, fireStoreTopicUnitFetch]);
+  }, [topic, unit, fetchTopicUnit]);
 
-  // once fsData is populated, set the slide, content and list
+  // once topicUnit is populated, set the slide, content and list
   if (!isLoading) {
     console.log("dataloaded");
     //****testing
     console.log("page", page);
-    slide = fsData.slide;
+    slide = topicUnit.slide;
     // find the content info
     content = slide[page - 1].content;
     // find the slide
@@ -142,7 +145,7 @@ const Slide = ({
                 </Button>
               </Box>
             )}
-            <Typography variant="h5">{fsData.info}</Typography>
+            <Typography variant="h5">{topicUnit.info}</Typography>
             <Divider />
             <Typography variant="body1">
               Unit {unit} - Slide {page}
@@ -172,12 +175,12 @@ const Slide = ({
 
 const mapStateToProps = (state) => ({
   user: state.userData,
-  fsData: state.fireData,
+  topicUnit: state.publicData.topicUnit,
   slidePage: state.slideData.slide_counter,
 });
 
 const mapDispatchToProps = {
-  fireStoreTopicUnitFetch,
+  fetchTopicUnit,
   slideCount,
   updateCurrentSlide,
 };

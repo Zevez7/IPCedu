@@ -1,0 +1,34 @@
+{
+  "1": {
+    "name": "TGH",
+    "address": "4068  Quilly Lane",
+    "city": "Tampa",
+    "state": " FL",
+    "zipcode": "04863",
+    "coordinator": "TGHcoord"
+  },
+  "2": {
+    "name": "Health Clinic",
+    "address": "4068  Quilly Lane",
+    "city": "Tampa",
+    "state": " FL",
+    "zipcode": "04863",
+    "coordinator": "HCcoord"
+  },
+  "3": {
+    "name": "St. Joseph Hospital",
+    "address": "4068  Quilly Lane",
+    "city": "Tampa",
+    "state": " FL",
+    "zipcode": "04863",
+    "coordinator": "SJHcoord"
+  },
+  "4": {
+    "name": "N/A",
+    "address": "N/A",
+    "city": "N/A",
+    "state": "N/A",
+    "zipcode": "N/A",
+    "coordinator": "N/A"
+  }
+}

@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /covid/{units} {
+      allow read: if true;
+      // any login user can write media
+   		// allow write: if true;
+      // allow write: if request.auth.uid != null;
+    }
+   	match /usersIPC/{userId} {
+      function onlyContentChanged() {
+        // userId & roles cannot be changed. 
+        // no new data field can be added
+        return request.resource.data.userId == resource.data.userId
+        && request.resource.data.roles == resource.data.roles
+        && request.resource.size() == resource.size();
+      }
+
+      function isAdmin() {
+        // usersIPC resource data under uid document
+        return resource.data.roles == "admin";
+      }
+
+
+        // this prevent new fields from being created
+      allow update: if request.resource.data.keys().hasOnly(["covid","email", "role","supervisor", "userId",'displayName', 'location', 'position']);
+
+
+
+    	// only users with same uid can read their own user data 
+
+
+      allow read, delete: if request.auth.uid == userId;
+      // cloud function creates a new user with signup
+      allow create: if false;
+    }
+    match /media/{mediaId} {
+      allow read: if true;
+      // any login user can write media
+      allow write: if request.auth.uid != null;
+    }
+    match /questions/{questionId} {
+      allow read: if true;
+      // any login user can write questions
+      allow write: if request.auth.uid != null;
+  	}
+    match /users/{userId} {
+    	// only users with same uid can read their own user data 
+      allow read, update, delete: if request.auth.uid == userId;
+    	// only login user can create a users/userID
+      // creating a new user requires the user to login first
+      allow create: if request.auth.uid != null;
+    }
+	}
+}

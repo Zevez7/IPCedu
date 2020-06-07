@@ -1,4 +1,4 @@
-import { USER_DATA, LOGOUT } from "./../action/types";
+import { LOGOUT, DELETE_USER, USER_DATA } from "./../action/userAction";
 
 const initialState = { displayName: null, email: null, uid: null };
 
@@ -8,6 +8,8 @@ export default (state = initialState, { type, payload }) => {
       return payload;
     case LOGOUT:
       return initialState;
+    case DELETE_USER:
+      return state;
     default:
       return state;
   }

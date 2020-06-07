@@ -3,7 +3,7 @@
   "email": "dat7md@gmail.com",
   "userId": "0cEFZ0ZMrlcE1HTG6ky3E9LY7qm2",
   "location": "TGH",
-  "supervisor": "Healthy Jane",
+  "role": "user",
   "covid": {
     "title": "COVID-19 Infection Control",
     "info": "Infection control guide for health care worker",

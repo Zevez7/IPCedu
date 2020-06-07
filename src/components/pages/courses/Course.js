@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import Divider from "./../../others/Divider";
-import { fetchCovidList } from "../../redux/action/index";
+import { fetchCovidList } from "../../redux/action/publicAction";
 const useStyles = makeStyles({
   courses: {
     marginTop: 20,
@@ -54,7 +54,7 @@ export const Courses = ({ userData, fetchCovidList, covidListData }) => {
 const mapStateToProps = (state) => ({
   userCourse: state.userData.savedTopic,
   userData: state.userData,
-  covidListData: state.covidListData,
+  covidListData: state.publicData.covidList,
 });
 
 const mapDispatchToProps = { fetchCovidList };

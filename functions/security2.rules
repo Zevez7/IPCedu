@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /covid/{units} {
+      allow read: if true;
+      // any login user can write media
+   		// allow write: if true;
+      // allow write: if request.auth.uid != null;
+    }
+    match /media/{mediaId} {
+      allow read: if true;
+      // any login user can write media
+      allow write: if request.auth.uid != null;
+    }
+    match /questions/{questionId} {
+      allow read: if true;
+      // any login user can write questions
+      allow write: if request.auth.uid != null;
+  	}
+    match /users/{userId} {
+    	// only users with same uid can read their own user data 
+      allow read, update, delete: if request.auth.uid == userId;
+    	// only login user can create a users/userID
+      // creating a new user requires the user to login first
+      allow create: if request.auth.uid != null;
+    }
+   	match /usersIPC/{userId} {
+      allow update: 
+        // prevent new field from being added
+        if request.resource.data.keys().hasOnly(["covid","email", "role",
+        	"coordinator", "userId",'displayName', 'location', 'position', 'createdAt'])      	
+      	// lock role and userId from being changed
+        && request.resource.data.userId == resource.data.userId
+        // only user with same userId can update their account
+        && request.auth.uid == userId
+        // or only users with admin role can update other user's data
+				|| get(/databases/$(database)/documents/usersIPC/$(request.auth.uid)).data.role == "admin";
+   	
+ 			allow read: 
+	   		// only users with same uid can read their own user data 
+				if request.auth.uid == userId
+        // only users with admin role can read other user's data
+				|| get(/databases/$(database)/documents/usersIPC/$(request.auth.uid)).data.role == "admin";  
+        // only user with coordinator can read other user's data  	
+        || get(/databases/$(database)/documents/usersIPC/$(request.auth.uid)).data.role == "coordinator" 
+
+      
+      // cloud function creates a new user with signup
+      allow create: if false;
+    }
+    match /topicList/{topic} {
+    	// only users with same uid can read their own user data 
+      allow read: if true;
+
+    }
+	}
+}
