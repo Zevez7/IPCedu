@@ -2,7 +2,7 @@ import location from "../../../Data/selectData/location.json";
 import position from "../../../Data/selectData/position.json";
 import role from "../../../Data/selectData/role.json";
 import coordinator from "../../../Data/selectData/coordinator.json";
-import { db, auth, firebase } from "../../../firebase/Firebase";
+import { db } from "../../../firebase/Firebase";
 
 export const FETCH_POSITION = "FETCH_POSITION";
 export const FETCH_LOCATION = "FETCH_LOCATION";
@@ -46,6 +46,8 @@ export const fetchCovidList = () => async (dispatch) => {
 
 export const fetchTopicUnit = (topic, unit) => async (dispatch) => {
   let topicUnit;
+  //****testing
+  console.log("unit", unit);
 
   try {
     topicUnit = await db.collection(topic).doc(`unit ${unit}`).get();

@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { editUserData } from "./../../redux/action/userAction";
+import { editUserData } from "../../../redux/action/userAction";
 import {
   fetchLocation,
   fetchRole,
   fetchCoord,
-} from "./../../redux/action/index";
+} from "../../../redux/action/index";
 import { useForm } from "react-hook-form";
 import { TextField, Box, Typography, Button, Paper } from "@material-ui/core";
-import Divider from "./../../others/Divider";
+import Divider from "../../../others/Divider";
 import { Link } from "react-router-dom";
 
 import AdminInfoTable from "./AdminInfoTable";
@@ -204,10 +204,10 @@ const AdminEditAccount = ({
 };
 const mapStateToProps = (state, ownProps) => {
   const ownPropUserId = ownProps.match.params.userId;
-  const allUser = state.allUserData;
-  const location = state.public.location;
-  const role = state.public.role;
-  const coord = state.public.coord;
+  const allUser = state.adminData.allUser;
+  const location = state.publicData.location;
+  const role = state.publicData.role;
+  const coord = state.publicData.coord;
   // get all the user data and filter out that user data
   // that matches the userId paramater from the link
 

@@ -26,6 +26,7 @@ export const Courses = ({ userData, fetchCovidList, covidListData }) => {
 
       {course.unit &&
         Object.values(course.unit).map((courseUnit, index) => {
+      
           return (
             <CourseUnit
               unit={courseUnit.unitNum}

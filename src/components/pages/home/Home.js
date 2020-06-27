@@ -1,16 +1,23 @@
 import React from "react";
-import { Box, Typography } from "@material-ui/core";
-import Divider from "../../others/Divider";
+import { Box, Typography, Button } from "@material-ui/core";
+import TitleHeader from "../../titleHeader/TitleHeader";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
-      <Box>
-        <Typography variant="h4">
-          COVID-19 Infection Control Education
-        </Typography>
+      <TitleHeader title="COVID-19 Infection Control Education" />
+      <Box align="center">
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/courses"
+        >
+          VIEW COURSES
+        </Button>
       </Box>
-      <Divider />
+
       <Box mt={4}>
         <Typography>
           Hillsborough County infection control education platform for

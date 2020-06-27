@@ -1,4 +1,4 @@
-import { db, auth, firebase } from "../../../firebase/Firebase";
+import { db } from "../../../firebase/Firebase";
 
 export const SLIDE_COUNT = "SLIDE_COUNT";
 

@@ -45,6 +45,7 @@ const Slide = ({
 
   // passing unit and topic from topic unit link
   const { topic, unit } = match.params;
+
   let slide;
   let content;
   let list;
@@ -54,7 +55,7 @@ const Slide = ({
 
   const [page, setPage] = useState(slidePage || 1);
 
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   //****testing
   console.log("isLoading", isLoading);
@@ -77,7 +78,7 @@ const Slide = ({
     fetchTopicUnit(topic, unit).then(() => {
       //****testing
       console.log("cat");
-      setisLoading(false);
+      setIsLoading(false);
     });
   }, [topic, unit, fetchTopicUnit]);
 

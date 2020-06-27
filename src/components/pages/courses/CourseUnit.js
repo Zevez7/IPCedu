@@ -31,6 +31,7 @@ const BorderLinearProgress = withStyles({
 
 function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
   const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <CardActionArea
@@ -40,10 +41,9 @@ function CourseUnit({ unit, info, topic, progress, slideCount, currentSlide }) {
       >
         <CardContent>
           <Typography variant="body1" color="primary">
-            Unit {unit && unit}
+            {info && info}
           </Typography>
-
-          <Typography variant="body1">{info && info}</Typography>
+          <Typography variant="body2">Unit {unit && unit}</Typography>
 
           {!Number.isNaN(progress) ? (
             <BorderLinearProgress

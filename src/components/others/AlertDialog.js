@@ -18,6 +18,8 @@ export default function AlertDialog({
   cancelColor = "primary",
   confirmColor = "primary",
   confirmActionFunction,
+  size = "medium",
+  buttonColor = "primary",
 }) {
   const [open, setOpen] = useState(false);
 
@@ -35,10 +37,11 @@ export default function AlertDialog({
   };
 
   return (
-    <div>
+    <>
       <Button
+        size={size}
         variant="outlined"
-        color="primary"
+        color={buttonColor}
         onClick={handleClickOpen}
         className={className}
       >
@@ -65,6 +68,6 @@ export default function AlertDialog({
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

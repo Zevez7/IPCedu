@@ -28,9 +28,10 @@ import Home from "./components/pages/home/Home";
 import About from "./components/pages/about/About";
 import EditAccount from "./components/pages/account/EditAccount";
 import Admin from "./components/pages/admin/Admin";
-import AdminEditAccount from "./components/pages/admin/AdminEditAccount";
+import AdminEditAccount from "./components/pages/admin/user/AdminEditAccount";
+import AdminContentUnitAddNew from "./components/pages/admin/content/AdminContentUnitAddNew";
 import Coordinator from "./components/pages/coordinator/Coordinator";
-
+import CovidListEdit from "./components/pages/admin/content/CovidListEdit";
 // import "./firebaseui-styling.global.css"; // Import globally.
 
 // automatic responsive font sizes based on variant
@@ -114,21 +115,25 @@ function App({ fetchUserData, user, updateCurrentSlide }) {
                 </Switch>
               </Container>
               <Container className={classes.adminLink}>
-                <Route
-                  exact
-                  path="/admin"
-                  render={(props) => <Admin {...props} />}
-                />
-                <Route
-                  exact
-                  path="/coordinator"
-                  render={(props) => <Coordinator {...props} />}
-                />
-                <Route
-                  exact
-                  path="/admin/editaccount/:userId"
-                  render={(props) => <AdminEditAccount {...props} />}
-                />
+                <Switch>
+                  <Route path="/admin">
+                    <Admin />
+                  </Route>
+                  <Route exact path="/coordinator">
+                    <Coordinator />
+                  </Route>
+                  <Route
+                    exact
+                    path="/admineditaccount/:userId"
+                    render={(props) => <AdminEditAccount {...props} />}
+                  />
+                  <Route exact path="/admincontentunitaddnew">
+                    <AdminContentUnitAddNew />
+                  </Route>
+                  <Route exact path="/covidlistedit">
+                    <CovidListEdit />
+                  </Route>
+                </Switch>
               </Container>
             </>
           </Switch>

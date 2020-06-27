@@ -36,7 +36,7 @@ export default function AdminInfoTable({ filteredUserData }) {
               <TableCell component="th" scope="row">
                 {item.info}
               </TableCell>
-              <TableCell align="right">{`${item.currentSlide} / ${item.totalSlide}`}</TableCell>
+              <TableCell align="right">{`${item.currentSlide}/${item.totalSlide}`}</TableCell>
               <TableCell align="right">
                 {Math.floor((item.currentSlide / item.totalSlide) * 100)}
               </TableCell>

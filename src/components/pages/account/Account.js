@@ -50,27 +50,27 @@ const Account = ({ user, fetchLocation, deleteUser }) => {
           <Typography variant="h5">{user.displayName}</Typography>
           <Typography variant="body2">{user.email}</Typography>
           {user.role === "admin" && (
-            <>
-              <Button
-                variant="outlined"
-                color="primary"
-                component={Link}
-                to="/admin"
-                className={classes.adminPanel}
-              >
-                Admin Panel
-              </Button>
-              <br />
-              <Button
-                variant="outlined"
-                color="primary"
-                component={Link}
-                to="/coordinator"
-                className={classes.adminPanel}
-              >
-                Coordinator Panel
-              </Button>
-            </>
+            <Button
+              variant="outlined"
+              color="primary"
+              component={Link}
+              to="/admin"
+              className={classes.adminPanel}
+            >
+              Admin Panel
+            </Button>
+          )}
+          <br />
+          {(user.role === "admin" || user.role === "coordinator") && (
+            <Button
+              variant="outlined"
+              color="primary"
+              component={Link}
+              to="/coordinator"
+              className={classes.adminPanel}
+            >
+              Coordinator Panel
+            </Button>
           )}
         </Box>
         <Divider />

@@ -8,8 +8,9 @@ import { TextField, Box, Typography, Button } from "@material-ui/core";
 import Divider from "./../../others/Divider";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import AdminEditAccountSelector from "../admin/AdminEditAccountSelector";
-import { useAccountSelector } from "../admin/useAccountSelector";
+import AdminEditAccountSelector from "../admin/user/AdminEditAccountSelector";
+import { useAccountSelector } from "../admin/user/useAccountSelector";
+
 const useStyles = makeStyles({
   root: {
     marginLeft: "auto",
